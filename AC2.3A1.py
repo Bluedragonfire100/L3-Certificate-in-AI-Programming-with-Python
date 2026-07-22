@@ -1,4 +1,4 @@
-While the original code is readable and efficient, this code is being made significantly more efficient and concise than the original calculations code. 
+# While the original code is readable and efficient, this code is being made significantly more efficient and concise than the original calculations code. 
 
 It is optimised by using dictionary-based approach to remove repetitive if and elif statements and utilises the f-strings properly for use in inline evaluation.
 
@@ -6,16 +6,13 @@ def add(x, y):
     """Returns the sum of two numbers."""
     return x + y
 
-
 def subtract(x, y):
     """Returns the difference of two numbers."""
     return x - y
 
-
 def multiply(x, y):
     """Returns the product of two numbers."""
     return x * y
-
 
 def divide(x, y):
     """Returns the quotient of two numbers. Handles division by zero."""
@@ -23,7 +20,6 @@ def divide(x, y):
         return x / y
     except ZeroDivisionError:
         return "Error! Division by zero is not allowed."
-
 
 def main():
     # Dictionary mapping choice to operation symbol and function
@@ -54,16 +50,14 @@ def main():
                 print("Invalid input! Please enter numbers only.")
                 continue
 
-            # Fetch the operation details and execute
-            symbol, func = operations[user_choice]
-            result = func(num1, num2)
-            print(f"Result: {num1} {symbol} {num2} = {result}")
+            # CRITICAL CHANGE: Inline evaluation inside the f-string eliminates 3 lines of variable assignment
+            print(f"Result: {num1} {operations[user_choice][0]} {num2} = {operations[user_choice][1](num1, num2)}")
+            
         else:
             print("Invalid choice! Please select a valid option from 1 to 5.")
 
-
 if __name__ == "__main__":
-    main()
+    main()#
 #
 #
 #
