@@ -6,13 +6,16 @@ def add(x, y):
     """Returns the sum of two numbers."""
     return x + y
 
+
 def subtract(x, y):
     """Returns the difference of two numbers."""
     return x - y
 
+
 def multiply(x, y):
     """Returns the product of two numbers."""
     return x * y
+
 
 def divide(x, y):
     """Returns the quotient of two numbers. Handles division by zero."""
@@ -20,6 +23,7 @@ def divide(x, y):
         return x / y
     except ZeroDivisionError:
         return "Error! Division by zero is not allowed."
+
 
 def main():
     # Dictionary mapping choice to operation symbol and function
@@ -50,14 +54,16 @@ def main():
                 print("Invalid input! Please enter numbers only.")
                 continue
 
-            # CRITICAL CHANGE: Inline evaluation inside the f-string eliminates 3 lines of variable assignment
-            print(f"Result: {num1} {operations[user_choice][0]} {num2} = {operations[user_choice][1](num1, num2)}")
-            
+            # Fetch the operation details and execute
+            symbol, func = operations[user_choice]
+            result = func(num1, num2)
+            print(f"Result: {num1} {symbol} {num2} = {result}")
         else:
             print("Invalid choice! Please select a valid option from 1 to 5.")
 
+
 if __name__ == "__main__":
-    main()#
+    main()
 #
 #
 #
