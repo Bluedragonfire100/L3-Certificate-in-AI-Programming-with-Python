@@ -2,47 +2,51 @@ While the original code is readable and efficient, this code is being made signi
 
 It is optimised by using dictionary-based approach to remove repetitive if and elif statements and utilises the f-strings properly for use in inline evaluation.
 
-def add(x, y): 
-    """Returns the sum of two numbers.""" 
-    return x + y 
+def add(x, y):
+    """Returns the sum of two numbers."""
+    return x + y
 
-def subtract(x, y): 
-    """Returns the difference of two numbers.""" 
-    return x - y 
 
-def multiply(x, y): 
-    """Returns the product of two numbers.""" 
-    return x * y 
+def subtract(x, y):
+    """Returns the difference of two numbers."""
+    return x - y
 
-def divide(x, y): 
-    """Returns the quotient of two numbers. Handles division by zero.""" 
+
+def multiply(x, y):
+    """Returns the product of two numbers."""
+    return x * y
+
+
+def divide(x, y):
+    """Returns the quotient of two numbers. Handles division by zero."""
     try:
         return x / y
     except ZeroDivisionError:
         return "Error! Division by zero is not allowed."
 
+
 def main():
-    # Dictionary mapping choice to operation, symbol, and function
+    # Dictionary mapping choice to operation symbol and function
     operations = {
-        '1': ('+', add),
-        '2': ('-', subtract),
-        '3': ('*', multiply),
-        '4': ('/', divide)
+        "1": ("+", add),
+        "2": ("-", subtract),
+        "3": ("*", multiply),
+        "4": ("/", divide)
     }
 
     while True:
         print("\n--- Math Functions Menu ---")
-        for key, (symbol, _) in operations.items():
-            print(f"{key}. {symbol}")
+        for choice_key, (symbol, _) in operations.items():
+            print(f"{choice_key}. {symbol}")
         print("5. Exit")
 
-        choice = input("Enter your choice (1-5): ").strip()
+        user_choice = input("Enter your choice (1-5): ").strip()
 
-        if choice == '5':
+        if user_choice == "5":
             print("Exiting the program. Goodbye!")
             break
 
-        if choice in operations:
+        if user_choice in operations:
             try:
                 num1 = float(input("Enter first number: "))
                 num2 = float(input("Enter second number: "))
@@ -51,11 +55,12 @@ def main():
                 continue
 
             # Fetch the operation details and execute
-            symbol, func = operations[choice]
+            symbol, func = operations[user_choice]
             result = func(num1, num2)
             print(f"Result: {num1} {symbol} {num2} = {result}")
         else:
             print("Invalid choice! Please select a valid option from 1 to 5.")
+
 
 if __name__ == "__main__":
     main()
